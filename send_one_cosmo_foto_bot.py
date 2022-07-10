@@ -33,4 +33,5 @@ if __name__ == '__main__':
     bot = telegram.Bot(token=Token)
     try:
         bot.send_document(chat_id=chat_id, document=open(file_path, 'rb'))
-    except (telegram.error.NetworkError, )
+    except (telegram.error.NetworkError, telegram.error.InvalidToken) as e:
+        print('Ошибка:\n{}'.format(e))
