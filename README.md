@@ -45,7 +45,7 @@ pip install -r requirements.txt
 
 Для скачивания фотографий вам нужна 1 переменная :
 
-- NASA_TOKEN - секретный ключ ([ссылка](https://api.nasa.gov/#apod)).
+- NASA_TOKEN - секретный ключ ([ссылка](https://api.nasa.gov)).
 
 #### Запуск кода.
 
