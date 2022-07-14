@@ -24,12 +24,12 @@ def get_file_paths_from_directory(directory):
 
 if __name__ == '__main__':
     load_dotenv()
-    chat_id = os.getenv("chat_id")
-    Token = os.getenv("TOKEN_TELEGRAM")
+    chat_id = os.getenv("SPACE_CHAT_ID")
+    token = os.getenv("TELEGRAM_TOKEN")
     time_out = get_args()
     directory = 'space_images'
     file_paths = get_file_paths_from_directory(directory)
-    bot = telegram.Bot(token=Token)
+    bot = telegram.Bot(token=token)
     try:
         for file_path in file_paths:
             bot.send_document(chat_id=chat_id, document=open(file_path, 'rb'))
