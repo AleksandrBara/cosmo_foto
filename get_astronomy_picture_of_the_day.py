@@ -48,8 +48,7 @@ def get_astronomy_picture_of_the_day(token, foto_count):
 
 if __name__ == '__main__':
     directory_name = 'space_images'
-    if not os.path.exists(directory_name):
-        os.mkdir(directory_name)
+    os.makedirs(directory_name, exist_ok=True)
     load_dotenv()
     token = os.getenv("NASA_TOKEN")
     foto_count = get_args()
