@@ -3,6 +3,13 @@ import urllib.parse
 import os
 import argparse
 from dotenv import load_dotenv
+import datetime
+
+
+def make_time_stamp():
+    current_time = datetime.datetime.now()
+    time_stamp = current_time.timestamp()
+    return time_stamp
 
 
 def get_args():
@@ -12,11 +19,11 @@ def get_args():
     return count
 
 
-def make_file_name_from_link(link):
+def make_file_extension_from_link(link):
     url_component = urllib.parse.urlparse(link).path
     url_component_clean = urllib.parse.unquote(url_component)
-    file_name = os.path.split(url_component_clean)[1]
-    return file_name
+    file_extension = os.path.splitext(url_component_clean)[1]
+    return file_extension
 
 
 def get_astronomy_picture_of_the_day(token, foto_count):
@@ -49,8 +56,9 @@ if __name__ == '__main__':
     try:
         links = get_astronomy_picture_of_the_day(token, foto_count)
         for link in links:
-            file_name = make_file_name_from_link(link)
-            file_path = f'{directory_name}/{file_name}'
+            file_extension = make_file_extension_from_link(link)
+            file_name = 'nasa'
+            file_path = f'{directory_name}/{file_name}{make_time_stamp()}{file_extension}'
             response = requests.get(link)
             response.raise_for_status()
             with open(file_path, 'wb') as file:
