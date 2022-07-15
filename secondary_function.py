@@ -1,12 +1,18 @@
 import urllib.parse
 import os
+import datetime
+
+def make_time_stamp():
+    current_time = datetime.datetime.now()
+    time_stamp = current_time.strftime("%Y%m%d%H%M%S")
+    return time_stamp
 
 
-def make_file_name_from_link(link):
+def make_file_extension_from_link(link):
     url_component = urllib.parse.urlparse(link).path
     url_component_clean = urllib.parse.unquote(url_component)
-    file_name = os.path.split(url_component_clean)[1]
-    return file_name
+    file_extension = os.path.splitext(url_component_clean)[1]
+    return file_extension
 
 
 def get_file_paths_from_directory(directory):
