@@ -14,11 +14,11 @@ def get_args():
 
 def get_file_paths_from_directory(directory):
     for address, dirs, files in os.walk(directory):
-        file_path_catalog = list()
+        all_file_paths= list()
         for name in files:
             file_path = os.path.join(address, name)
-            file_path_catalog.append(file_path)
-    return file_path_catalog
+            all_file_paths.append(file_path)
+    return all_file_paths
 
 
 if __name__ == '__main__':
