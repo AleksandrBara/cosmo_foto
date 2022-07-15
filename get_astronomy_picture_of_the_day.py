@@ -7,7 +7,6 @@ import datetime
 from pathlib import Path
 
 
-
 def make_time_stamp():
     current_time = datetime.datetime.now()
     time_stamp = current_time.strftime("%Y%m%d%H%M%S")
@@ -56,14 +55,22 @@ if __name__ == '__main__':
     foto_count = get_args()
     try:
         links = get_astronomy_picture_of_the_day(token, foto_count)
-        for link in links:
-            file_extension = make_file_extension_from_link(link)
-            file_name = f"'nasa'{make_time_stamp()}{file_extension}"
-            file_path = Path(directory_name, file_name)
+    except (
+            requests.exceptions.HTTPError,
+            requests.exceptions.ConnectionError
+    ) as e:
+        quit('Не возможно получить данные с сервера:\n{}'.format(e))
+    for link in links:
+        file_extension = make_file_extension_from_link(link)
+        file_name = f"'NASA'{make_time_stamp()}{file_extension}"
+        file_path = Path(directory_name, file_name)
+        try:
             response = requests.get(link)
             response.raise_for_status()
-            with open(file_path, 'wb') as file:
-                file.write(response.content)
-    except (requests.exceptions.HTTPError, requests.exceptions.ConnectionError) as e:
-        print('Не возможно получить данные с сервера:\n{}'.format(e))
-
+        except (
+                requests.exceptions.HTTPError,
+                requests.exceptions.ConnectionError
+        ) as e:
+            print('Не возможно получить данные с сервера:\n{}'.format(e))
+        with open(file_path, 'wb') as file:
+            file.write(response.content)

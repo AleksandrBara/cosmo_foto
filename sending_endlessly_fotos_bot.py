@@ -15,11 +15,11 @@ def get_args():
 
 def get_file_paths_from_directory(directory):
     for address, dirs, files in os.walk(directory):
-        file_path_catalog = list()
+        all_file_paths = list()
         for name in files:
             file_path = os.path.join(address, name)
-            file_path_catalog.append(file_path)
-    return file_path_catalog
+            all_file_paths.append(file_path)
+    return all_file_paths
 
 
 if __name__ == '__main__':
@@ -32,7 +32,8 @@ if __name__ == '__main__':
     bot = telegram.Bot(token=token)
     try:
         for file_path in file_paths:
-            bot.send_document(chat_id=chat_id, document=open(file_path, 'rb'))
+            with open(file_path, 'rb') as file:
+                bot.send_document(chat_id=chat_id, document=file)
             sleep(int(time_out))
     except (telegram.error.NetworkError, telegram.error.InvalidToken) as e:
         print('Ошибка:\n{}'.format(e))
@@ -40,7 +41,8 @@ if __name__ == '__main__':
         random.shuffle(file_paths)
         try:
             for file_path in file_paths:
-                bot.send_document(chat_id=chat_id, document=open(file_path, 'rb'))
+                with open(file_path, 'rb') as file:
+                    bot.send_document(chat_id=chat_id, document=file)
                 sleep(int(time_out))
         except (telegram.error.NetworkError, telegram.error.InvalidToken) as e:
             print('Ошибка:\n{}'.format(e))

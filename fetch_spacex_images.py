@@ -46,7 +46,7 @@ if __name__ == '__main__':
             requests.exceptions.HTTPError,
             requests.exceptions.ConnectionError
     ) as e:
-        print('Не возможно получить данные с сервера:\n{}'.format(e))
+        quit('Не возможно получить данные с сервера:\n{}'.format(e))
 
     for link in links:
         file_extension = make_file_extension_from_link(link)
