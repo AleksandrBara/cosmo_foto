@@ -25,13 +25,14 @@ if __name__ == '__main__':
     directory = 'space_images'
     load_dotenv()
     chat_id = os.getenv("SPACE_CHAT_ID")
-    token = os.getenv("TELEGRAMM_TOKEN")
+    token = os.getenv("TELEGRAM_TOKEN")
     file_path = get_args()
     if file_path is None:
         file_path_catalog = get_file_paths_from_directory(directory)
         file_path = random.choice(file_path_catalog)
     bot = telegram.Bot(token=token)
     try:
-        bot.send_document(chat_id=chat_id, document=open(file_path, 'rb'))
+        with open(file_path, 'rb') as file:
+            bot.send_document(chat_id=chat_id, document=file)
     except (telegram.error.NetworkError, telegram.error.InvalidToken) as e:
         print('Ошибка:\n{}'.format(e))
