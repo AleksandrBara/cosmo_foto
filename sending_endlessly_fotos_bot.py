@@ -14,8 +14,8 @@ def get_args():
 
 
 def get_file_paths_from_directory(directory):
+    all_file_paths = list()
     for address, dirs, files in os.walk(directory):
-        all_file_paths = list()
         for name in files:
             file_path = os.path.join(address, name)
             all_file_paths.append(file_path)
