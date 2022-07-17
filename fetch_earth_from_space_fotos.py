@@ -21,20 +21,21 @@ def get_links_and_all_id_from_nasa():
     return links_and_all_id
 
 
+def save_links_as_pictures(links_and_all_id):
+    for link, image_id in links_and_all_id:
+        file_name = f"{image_id}.png"
+        file_path = Path(directory_name, file_name)
+        response = requests.get(link)
+        response.raise_for_status()
+        with open(file_path, 'wb') as file:
+            file.write(response.content)
+
+
 if __name__ == '__main__':
     directory_name = 'space_images'
     os.makedirs(directory_name, exist_ok=True)
     try:
-        links = get_links_and_all_id_from_nasa()
+        links_and_all_id = get_links_and_all_id_from_nasa()
+        save_links_as_pictures(links_and_all_id)
     except (requests.exceptions.HTTPError, requests.exceptions.ConnectionError) as e:
         print('Не возможно получить данные с сервера:\n{}'.format(e))
-    for link, image_id in links:
-        file_name = f"{image_id}.png"
-        file_path = Path(directory_name, file_name)
-        try:
-            response = requests.get(link)
-            response.raise_for_status()
-        except (requests.exceptions.HTTPError, requests.exceptions.ConnectionError) as e:
-            print('Не возможно получить данные с сервера:\n{}'.format(e))
-        with open(file_path, 'wb') as file:
-            file.write(response.content)
