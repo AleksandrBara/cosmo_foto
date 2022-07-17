@@ -96,9 +96,9 @@ python3 sending_one_foto_bot.py --file_path=path
 , где `path`  - это путь к файлу, который вы хотите
   опубликовать в своем телеграм канале.
 ```
-python3 sending_endlessly_foto_bot.py --file_path=time_out
+python3 sending_endlessly_foto_bot.py --time_out=time_in_seconds
 ```
-, где `time_out`  - это промежуток времени
+, где `time_in_seconds`  - это промежуток времени
   между публикациями фото из папки `space_images` в секундах (напомню, что в часе 3600 секунд).
 
 После запуска скрипта в вашем телеграм канале появится фото.
