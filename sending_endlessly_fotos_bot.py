@@ -7,7 +7,7 @@ from time import sleep
 from secondary_function import get_file_paths_from_directory
 
 
-def get_args():
+def get_time_out_from_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--time_out", default=14400)
     time_out = parser.parse_args().time_out
@@ -19,7 +19,7 @@ if __name__ == '__main__':
     load_dotenv()
     chat_id = os.getenv("TELEGRAM_CHAT_ID")
     token = os.getenv("TELEGRAM_TOKEN")
-    time_out = get_args()
+    time_out = get_time_out_from_args()
     directory = 'space_images'
     file_paths = get_file_paths_from_directory(directory)
     bot = telegram.Bot(token=token)

@@ -6,7 +6,7 @@ import argparse
 from secondary_function import get_file_paths_from_directory
 
 
-def get_args():
+def get_file_path_from_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--file_path", default=None)
     file_path = parser.parse_args().file_path
@@ -18,7 +18,7 @@ if __name__ == '__main__':
     load_dotenv()
     chat_id = os.getenv("TELEGRAM_CHAT_ID")
     token = os.getenv("TELEGRAM_TOKEN")
-    file_path = get_args()
+    file_path = get_file_path_from_args()
     if file_path is None:
         file_path_catalog = get_file_paths_from_directory(directory)
         file_path = random.choice(file_path_catalog)
