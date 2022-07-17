@@ -4,6 +4,7 @@ import random
 from dotenv import load_dotenv
 import argparse
 from time import sleep
+from secondary_function import get_file_paths_from_directory
 
 
 def get_args():
@@ -12,14 +13,6 @@ def get_args():
     time_out = parser.parse_args().time_out
     return time_out
 
-
-def get_file_paths_from_directory(directory):
-    all_file_paths = list()
-    for address, dirs, files in os.walk(directory):
-        for name in files:
-            file_path = os.path.join(address, name)
-            all_file_paths.append(file_path)
-    return all_file_paths
 
 
 if __name__ == '__main__':

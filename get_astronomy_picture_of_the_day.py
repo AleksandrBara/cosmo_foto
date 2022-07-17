@@ -1,16 +1,10 @@
 import requests
-import urllib.parse
 import os
 import argparse
 from dotenv import load_dotenv
-import datetime
 from pathlib import Path
-
-
-def make_time_stamp():
-    current_time = datetime.datetime.now()
-    time_stamp = current_time.strftime("%Y%m%d%H%M%S")
-    return time_stamp
+from secondary_function import make_time_stamp
+from secondary_function import make_file_extension_from_link
 
 
 def get_args():
@@ -18,13 +12,6 @@ def get_args():
     parser.add_argument("--count", default=5)
     count = parser.parse_args().count
     return count
-
-
-def make_file_extension_from_link(link):
-    url_component = urllib.parse.urlparse(link).path
-    url_component_clean = urllib.parse.unquote(url_component)
-    file_extension = os.path.splitext(url_component_clean)[1]
-    return file_extension
 
 
 def get_astronomy_picture_of_the_day(token, foto_count):

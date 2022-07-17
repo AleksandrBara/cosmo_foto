@@ -3,6 +3,7 @@ import os
 import random
 from dotenv import load_dotenv
 import argparse
+from secondary_function import get_file_paths_from_directory
 
 
 def get_args():
@@ -10,15 +11,6 @@ def get_args():
     parser.add_argument("--file_path", default=None)
     file_path = parser.parse_args().file_path
     return file_path
-
-
-def get_file_paths_from_directory(directory):
-    all_file_paths = list()
-    for address, dirs, files in os.walk(directory):
-        for name in files:
-            file_path = os.path.join(address, name)
-            all_file_paths.append(file_path)
-    return all_file_paths
 
 
 if __name__ == '__main__':
