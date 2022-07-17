@@ -24,7 +24,7 @@ def get_file_paths_from_directory(directory):
 if __name__ == '__main__':
     directory = 'space_images'
     load_dotenv()
-    chat_id = os.getenv("SPACE_CHAT_ID")
+    chat_id = os.getenv("TELEGRAM_CHAT_ID")
     token = os.getenv("TELEGRAM_TOKEN")
     file_path = get_args()
     if file_path is None:

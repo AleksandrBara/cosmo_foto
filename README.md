@@ -59,7 +59,7 @@ pip install -r requirements.txt
 
 - `NASA_TOKEN` - секретный ключ ([ссылка](https://api.nasa.gov)).
 - `TELEGRAM_TOKEN` - секретный ключ телеграм бота.
-- `SPACE_CHAT_ID` - chat_id вашего телеграм канала.
+- `TELEGRAM_CHAT_ID` - chat_id вашего телеграм канала.
 
 #### Инструкция telegram:
 
