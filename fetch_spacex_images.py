@@ -6,7 +6,7 @@ from secondary_function import make_time_stamp
 from secondary_function import make_file_extension_from_link
 
 
-def get_lounch_number_from_args():
+def get_launch_number_from_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--launch_number", default=55)
     launch_number = parser.parse_args().launch_number
@@ -33,7 +33,7 @@ def fetch_spacex_any_launch(launch_number):
 if __name__ == '__main__':
     directory_name = 'space_images'
     os.makedirs(directory_name, exist_ok=True)
-    launch_number = get_lounch_number_from_args()
+    launch_number = get_launch_number_from_args()
     try:
         links = fetch_spacex_any_launch(launch_number)
     except (
