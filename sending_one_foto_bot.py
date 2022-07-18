@@ -4,6 +4,7 @@ import random
 from dotenv import load_dotenv
 import argparse
 from secondary_function import get_file_paths_from_directory
+from secondary_function import send_picture_to_telegram
 
 
 def get_file_path_from_args():
@@ -22,9 +23,7 @@ if __name__ == '__main__':
     if file_path is None:
         file_path_catalog = get_file_paths_from_directory(directory)
         file_path = random.choice(file_path_catalog)
-    bot = telegram.Bot(token=token)
     try:
-        with open(file_path, 'rb') as file:
-            bot.send_document(chat_id=chat_id, document=file)
+        send_picture_to_telegram(token, chat_id, file_path)
     except (telegram.error.NetworkError, telegram.error.InvalidToken) as e:
         print('Ошибка:\n{}'.format(e))

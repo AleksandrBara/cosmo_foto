@@ -2,6 +2,7 @@ import urllib.parse
 import os
 import datetime
 import requests
+import telegram
 
 
 def save_link_as_picture(link, file_path):
@@ -15,6 +16,12 @@ def make_time_stamp():
     current_time = datetime.datetime.now()
     time_stamp = current_time.strftime("%Y%m%d%H%M%S")
     return time_stamp
+
+
+def send_picture_to_telegram(token, chat_id, file_path):
+    bot = telegram.Bot(token=token)
+    with open(file_path, 'rb') as file:
+        bot.send_document(chat_id=chat_id, document=file)
 
 
 def make_file_extension_from_link(link):
