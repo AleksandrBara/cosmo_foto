@@ -4,6 +4,7 @@ import argparse
 from pathlib import Path
 from secondary_function import make_time_stamp
 from secondary_function import make_file_extension_from_link
+from secondary_function import save_link_as_picture
 
 
 def get_launch_number_from_args():
@@ -24,10 +25,7 @@ def fetch_spacex_any_launch(launch_number):
         file_extension = make_file_extension_from_link(link)
         file_name = f"'spacex'{make_time_stamp()}{file_extension}"
         file_path = Path(directory_name, file_name)
-        response = requests.get(link)
-        response.raise_for_status()
-        with open(file_path, 'wb') as file:
-            file.write(response.content)
+        save_link_as_picture(link, file_path)
 
 
 if __name__ == '__main__':

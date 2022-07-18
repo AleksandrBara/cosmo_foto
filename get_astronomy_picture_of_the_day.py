@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from pathlib import Path
 from secondary_function import make_time_stamp
 from secondary_function import make_file_extension_from_link
+from secondary_function import save_link_as_picture
 
 
 def get_counter_from_args():
@@ -29,10 +30,7 @@ def get_astronomy_picture_of_the_day(token, foto_count):
         file_extension = make_file_extension_from_link(link)
         file_name = f"'NASA'{make_time_stamp()}{file_extension}"
         file_path = Path(directory_name, file_name)
-        response = requests.get(link)
-        response.raise_for_status()
-        with open(file_path, 'wb') as file:
-            file.write(response.content)
+        save_link_as_picture(link, file_path)
 
 
 if __name__ == '__main__':

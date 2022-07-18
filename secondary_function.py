@@ -1,6 +1,15 @@
 import urllib.parse
 import os
 import datetime
+import requests
+
+
+def save_link_as_picture(link, file_path):
+    response = requests.get(link)
+    response.raise_for_status()
+    with open(file_path, 'wb') as file:
+        file.write(response.content)
+
 
 def make_time_stamp():
     current_time = datetime.datetime.now()

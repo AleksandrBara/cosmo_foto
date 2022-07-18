@@ -1,6 +1,7 @@
 import requests
 from pathlib import Path
 import os
+from secondary_function import save_link_as_picture
 
 
 def get_links_and_all_id_from_nasa():
@@ -25,10 +26,7 @@ def save_links_as_pictures(links_and_all_id):
     for link, image_id in links_and_all_id:
         file_name = f"{image_id}.png"
         file_path = Path(directory_name, file_name)
-        response = requests.get(link)
-        response.raise_for_status()
-        with open(file_path, 'wb') as file:
-            file.write(response.content)
+        save_link_as_picture(link, file_path)
 
 
 if __name__ == '__main__':
