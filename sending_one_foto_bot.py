@@ -15,15 +15,15 @@ def get_file_path_from_args():
 
 
 if __name__ == '__main__':
-    directory = 'space_images'
     load_dotenv()
     chat_id = os.getenv("TELEGRAM_CHAT_ID")
     token = os.getenv("TELEGRAM_TOKEN")
+    directory = 'space_images'
     file_path = get_file_path_from_args()
     if file_path is None:
         file_path_catalog = get_file_paths_from_directory(directory)
         file_path = random.choice(file_path_catalog)
     try:
         send_picture_to_telegram(token, chat_id, file_path)
-    except (telegram.error.NetworkError, telegram.error.InvalidToken) as e:
+    except (telegram.error.NetworkError, telegram.error.Unauthorized) as e:
         print('Ошибка:\n{}'.format(e))
