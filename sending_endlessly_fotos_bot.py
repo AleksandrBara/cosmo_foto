@@ -19,23 +19,25 @@ def send_pictures_to_telegram_endlessly(token, chat_id, file_paths):
     for file_path in file_paths:
         try:
             send_picture_to_telegram(token, chat_id, file_path)
-            sleep(int(time_out))
         except (telegram.error.Unauthorized, telegram.error.InvalidToken) as e:
             quit('Проверьте ваши данные! \n Ошибка:\n{}'.format(e))
         except telegram.error.NetworkError as e:
             print('Отсутствует подключение! \n Ошибка:\n{}'.format(e))
             sleep(600)
+        else:
+            sleep(int(time_out))
     while True:
         random.shuffle(file_paths)
         for file_path in file_paths:
             try:
                 send_picture_to_telegram(token, chat_id, file_path)
-                sleep(int(time_out))
             except (telegram.error.Unauthorized, telegram.error.InvalidToken) as e:
                 quit('Проверьте ваши данные! \n Ошибка:\n{}'.format(e))
             except telegram.error.NetworkError as e:
                 print('Отсутствует подключение! \n Ошибка:\n{}'.format(e))
                 sleep(600)
+            else:
+                sleep(int(time_out))
 
 
 if __name__ == '__main__':
