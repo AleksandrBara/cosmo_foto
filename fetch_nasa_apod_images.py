@@ -15,7 +15,7 @@ def get_counter_from_args():
     return count
 
 
-def get_astronomy_picture_of_the_day(token, foto_count):
+def fetch_nasa_apod_images(token, foto_count):
     headers = {}
     payload = ('api_key', token), ('count', foto_count)
     response = requests.get(
@@ -40,7 +40,7 @@ if __name__ == '__main__':
     os.makedirs(directory_name, exist_ok=True)
     foto_count = get_counter_from_args()
     try:
-        links = get_astronomy_picture_of_the_day(token, foto_count)
+        links = fetch_nasa_apod_images(token, foto_count)
     except (
             requests.exceptions.HTTPError,
             requests.exceptions.ConnectionError
