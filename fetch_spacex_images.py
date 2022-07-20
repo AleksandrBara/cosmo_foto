@@ -33,7 +33,7 @@ if __name__ == '__main__':
     os.makedirs(directory_name, exist_ok=True)
     launch_number = get_launch_number_from_args()
     try:
-        links = fetch_spacex_any_launch(launch_number)
+        fetch_spacex_any_launch(launch_number)
     except (
             requests.exceptions.HTTPError,
             requests.exceptions.ConnectionError
