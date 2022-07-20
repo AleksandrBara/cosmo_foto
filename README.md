@@ -17,13 +17,13 @@
   ([пример фото](https://live.staticflickr.com/65535/50291453997_aa715950e7_o.jpg))
   от вас требуется только ввести номер запуска(на момент написания скрипта их 105).
 
-#### get_astronomy_picture_of_the_day.py :
+#### fetch_nasa_apod_images.py :
 
 - Качает фотографии с сайта NASA ([пример фото](https://apod.nasa.gov/apod/astropix.html))
   от вас требуется только ввести количество фотографий, которое вы хотите скачать.
   Дополнительно вам понадобится создать TOKEN, перейдите по [ссылке](https://api.nasa.gov) и следуйте инструкциям.
 
-#### fetch_earth_from_space_fotos.py
+#### fetch_nasa_epic_images.py
 
 - Скачивает последние доступные фотографии нашей планеты собираемые с помощью
   инструмента DSCOVR Earth Polychromatic
@@ -38,7 +38,8 @@
 #### sending_endlessly_foto_bot.py
 
 - Публикует в Telegram все фото, с заданным интервалом, из папки ```space_images``` , а когда они закончатся,
-  начинает публиковать фото в случайном режиме. Проверьте что папка ```space_images``` существует в каталоге с программой
+  начинает публиковать фото в случайном режиме. Проверьте что папка ```space_images``` существует в каталоге с
+  программой
   и в ней есть фотографии.
 
 ### Установка.
@@ -76,14 +77,18 @@ pip install -r requirements.txt
 ```
 python3 fetch_spacex_images.py --launch_number=number
 ``` 
+
 , где ` number` - это количество запусков.
+
 ```
-python3 get_astronomy_picture_of_the_day.py --count=foto_count
+python3 fetch_nasa_apod_images.py --count=foto_count
 ```
- , где `foto_count` -это количество фотографий
-  которое вы хотите скачать.
+
+, где `foto_count` -это количество фотографий
+которое вы хотите скачать.
+
 ```
-python3 fetch_earth_from_space_fotos.py
+python3 fetch_nasa_epic_images.py
 ```
 
 После запуска любого из трех скриптов в папке `space_images` появятся новые фото.
@@ -93,13 +98,16 @@ python3 fetch_earth_from_space_fotos.py
 ```
 python3 sending_one_foto_bot.py --file_path=path
 ``` 
+
 , где `path`  - это путь к файлу, который вы хотите
-  опубликовать в своем телеграм канале.
+опубликовать в своем телеграм канале.
+
 ```
 python3 sending_endlessly_foto_bot.py --time_out=time_in_seconds
 ```
+
 , где `time_in_seconds`  - это промежуток времени
-  между публикациями фото из папки `space_images` в секундах (напомню, что в часе 3600 секунд).
+между публикациями фото из папки `space_images` в секундах (напомню, что в часе 3600 секунд).
 
 После запуска скрипта в вашем телеграм канале появится фото.
 
