@@ -1,5 +1,5 @@
 # Космические фотографии
-![ВОТ](/home/student/PycharmProjects/pythonProject1/cosmo_foto/photo/'spacex'20220925150007.jpg)
+![ВОТ](https://github.com/AleksandrBara/cosmo_foto/blob/main/photo/'spacex'20220925150007.jpg?raw=true)
 
 В репо представлены три скрипта с помощью которых вы можете скачивать лучшие фотографии запусков Илона Маска и
 фотографии космоса от NASA.
